@@ -78,6 +78,26 @@ Ans:
 <img width="1439" alt="Screenshot 2025-07-01 at 11 24 11 AM" src="https://github.com/user-attachments/assets/8b384e63-7bd4-44b1-bbbb-6dc6302ed77c" />
 <img width="1439" alt="Screenshot 2025-07-01 at 11 25 13 AM" src="https://github.com/user-attachments/assets/5377db4e-f498-4e92-87f3-9f70413c8734" />
 
+## 🚨 Additional Suspicious Activities (Not from Lockbit/CL0p)
+
+## **Q5.** How many unique suspicious domains attempted .exe or .php downloads?
+Ans:
+
+- 41
+
+**🛠️ Filter Used:**
+```wireshark
+http.request.method == "GET" && 
+(http.request.uri contains ".exe" || http.request.uri contains ".php")
+```
+
+<img width="1440" alt="Screenshot 2025-07-01 at 11 30 34 AM" src="https://github.com/user-attachments/assets/7025fdd1-d280-40d4-9c1e-fe5b1e6e9e2f" />
+
+Then go to Statistics > Endpoints 
+
+<img width="1439" alt="Screenshot 2025-07-01 at 11 33 37 AM" src="https://github.com/user-attachments/assets/d61fcbd8-5527-48cf-ac8f-bda47cfb8608" />
+<img width="1440" alt="Screenshot 2025-07-01 at 11 37 38 AM" src="https://github.com/user-attachments/assets/4c072b53-ab11-4787-b1d9-aa998d6ccbbd" />
+
 
 
 
