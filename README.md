@@ -14,7 +14,7 @@ Your organization is currently on high alert due to increased ransomware activit
 
 ---
 
-## **Q1.** What are the two prominent domain names in this pcap related to Lockbit 3.0?
+## **Q1.** There are two prominent domain names in this pcap that are related to Lockbit 3.0. What are the names of those two domains?
 
 **Ans:**  
 - `send.exploit[.]in`  
@@ -37,7 +37,7 @@ ssl.handshake.extensions_server_name contains "send.exploit.in"
 ```
 <img width="1439" alt="Screenshot 2025-07-01 at 10 57 02 AM" src="https://github.com/user-attachments/assets/f6db807a-bb4a-4967-8f65-e327d76b11fc" />
 
-## **Q2.** Which IP addresses were resolved for the two domains for Lockbit 3.0 in Question 1?
+## **Q2.** Which ip addresses were resolved for the two domains for Lockbit3.0 in Question 1? 
 Ans:
 
 - 89.22.239.240
@@ -45,7 +45,7 @@ Ans:
 - 144.76.136.153
 <img width="1439" alt="Screenshot 2025-07-01 at 11 03 47 AM" src="https://github.com/user-attachments/assets/2b78820f-7674-4141-a05d-8ff5f52ec859" />
 
-## **Q3.** What are the domain names of the two failed IOC connection attempts for CL0P ransomware?
+## **Q3.** There were ‘failed attempts’ to connect with two IOC of CL0P ransomware which is captured in the pcap. What are the domain names of these two IOC?
 Ans:
 
 - qweastradoc[.]com
@@ -68,7 +68,7 @@ dns.qry.name == "guerdofest.com"
 
 ```Here, qweastradoc[.]com containing IP 92.118.36.213 and jirostrogud[.]com containing IP 88.214.27.101 are failing to connect```.
 
-## **Q4.** What are the resolved IP addresses for the domains in Q3?
+## **Q4.** Which ip addresses were resolved for the two domains for CL0P ransomware in Question 3? 
 Ans:
 
 - 92.118.36.213
@@ -80,7 +80,7 @@ Ans:
 
 ## 🚨 Additional Suspicious Activities (Not from Lockbit/CL0p)
 
-## **Q5.** How many unique suspicious domains attempted .exe or .php downloads?
+## **Q5.** How many unique suspicious domains are found from the pcap for attempted downloads of files with the extension ‘.exe’ or ‘.php’?
 Ans:
 
 - 41
@@ -93,10 +93,26 @@ http.request.method == "GET" &&
 
 <img width="1440" alt="Screenshot 2025-07-01 at 11 30 34 AM" src="https://github.com/user-attachments/assets/7025fdd1-d280-40d4-9c1e-fe5b1e6e9e2f" />
 
-Then go to Statistics > Endpoints 
+Then go to Statistics > Endpoints :
 
 <img width="1439" alt="Screenshot 2025-07-01 at 11 33 37 AM" src="https://github.com/user-attachments/assets/d61fcbd8-5527-48cf-ac8f-bda47cfb8608" />
 <img width="1440" alt="Screenshot 2025-07-01 at 11 37 38 AM" src="https://github.com/user-attachments/assets/4c072b53-ab11-4787-b1d9-aa998d6ccbbd" />
+
+## **Q6.** There is an embedded ip address in one of the downloaded scripts from the suspicious domains of Question 5. This ip is used in http://x.x.x.x format inside the script. What is the value of this ip address?
+Ans:
+
+- 156.244.225.122
+
+**🛠️ Filter Used:**
+```wireshark
+http.response && (http.file_data contains "http://")
+```
+Then follow the http stream:
+<img width="1439" alt="Screenshot 2025-07-01 at 11 46 18 AM" src="https://github.com/user-attachments/assets/c9252982-2b6a-477c-9448-45c5c39f8ef8" />
+
+And look inside the stream:
+<img width="1439" alt="Screenshot 2025-07-01 at 11 46 43 AM" src="https://github.com/user-attachments/assets/f5fdfe81-e7db-47b0-8c41-2b98e75b771a" />
+
 
 
 
