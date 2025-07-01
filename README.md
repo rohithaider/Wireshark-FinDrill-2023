@@ -1,16 +1,16 @@
-# 🔍 Fin Drill 2023 - Preliminary SOC & CTI Analysis
+#  Fin Drill 2023 - Preliminary SOC & CTI Analysis
 
-## 📄 Scenario
+##  Scenario
 
 Your organization is currently on high alert due to increased ransomware activity. Leadership has received threat intelligence reports related to **Lockbit 3.0** and **CL0p** ransomware. As part of the SOC and CTI teams, you're tasked with analyzing network activity using a provided `.pcap` file to identify Indicators of Compromise (IOCs) and suspicious behavior.
 
-### 🧠 Threat Intelligence Sources:
+###  Threat Intelligence Sources:
 - [CISA Advisory AA23-075A](https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a)
 - [CISA Advisory AA23-158A](https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-158a)
 
 ---
 
-## 📝 Questions & Answers
+##  Questions & Answers
 
 ---
 
@@ -20,7 +20,7 @@ Your organization is currently on high alert due to increased ransomware activit
 - `send.exploit[.]in`  
 - `transfer[.]sh`  
 
-**🛠️ Filter Used:**
+** Filter Used:**
 ```wireshark
 http.host contains "premiumize.com" or
 http.host contains "anonfiles.com" or
@@ -52,7 +52,7 @@ Ans:
 
 - jirostrogud[.]com
 
-**🛠️ Filter Used:**
+** Filter Used:**
 ```wireshark
 dns.qry.name == "hiperfdhaus.com" ||
 dns.qry.name == "jirostrogud.com" ||
@@ -78,14 +78,14 @@ Ans:
 <img width="1439" alt="Screenshot 2025-07-01 at 11 24 11 AM" src="https://github.com/user-attachments/assets/8b384e63-7bd4-44b1-bbbb-6dc6302ed77c" />
 <img width="1439" alt="Screenshot 2025-07-01 at 11 25 13 AM" src="https://github.com/user-attachments/assets/5377db4e-f498-4e92-87f3-9f70413c8734" />
 
-## 🚨 Additional Suspicious Activities (Not from Lockbit/CL0p)
+##  Additional Suspicious Activities (Not from Lockbit/CL0p)
 
 ## **Q5.** How many unique suspicious domains are found from the pcap for attempted downloads of files with the extension ‘.exe’ or ‘.php’?
 Ans:
 
 - 41
 
-**🛠️ Filter Used:**
+** Filter Used:**
 ```wireshark
 http.request.method == "GET" && 
 (http.request.uri contains ".exe" || http.request.uri contains ".php")
@@ -103,7 +103,7 @@ Ans:
 
 - 156.244.225.122
 
-**🛠️ Filter Used:**
+** Filter Used:**
 ```wireshark
 http.response && (http.file_data contains "http://")
 ```
@@ -135,7 +135,7 @@ Ans:
 
 - 192.168.34.23
 
-**🛠️ Filter Used:**
+** Filter Used:**
 ```wireshark
 tcp.flags.syn == 1 && tcp.flags.ack == 0 && tcp.len == 0
 ```
@@ -147,7 +147,7 @@ Statistics → Conversations → TCP
 
 <img width="1439" alt="Screenshot 2025-07-01 at 12 04 56 PM" src="https://github.com/user-attachments/assets/c62c53e5-3711-4ac2-8f2a-ae163fd45f3c" />
 
-### ✅ tcp.flags.syn == 1
+### tcp.flags.syn == 1
 This checks whether the SYN flag is set in the TCP header.
 
 
@@ -158,7 +158,7 @@ So this means: “This packet is trying to start a connection.”
 
 
 
-### ✅ tcp.flags.ack == 0
+### tcp.flags.ack == 0
 This checks that the ACK flag is not set.
 
 
@@ -173,7 +173,7 @@ If ACK is 0, it means this is only the first step of the handshake (likely a sca
 
 
 
-### ✅ tcp.len == 0
+### tcp.len == 0
 This ensures the TCP packet carries no data — just the header and flags.
 
 
@@ -181,7 +181,7 @@ Scans typically don’t send any application data. They just want to see if the 
 
 
 
-### 🧠 Combined Meaning
+### Combined Meaning
 This filter catches TCP packets that:
 Are trying to start a new connection (SYN),
 
@@ -193,7 +193,7 @@ And don’t carry any data (zero payload).
 
 
 
-### 🚨 Why It's Suspicious
+### Why It's Suspicious
 This pattern is a hallmark of SYN scanning:
 Attackers send many SYN packets to different ports or IPs.
 
