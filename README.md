@@ -211,6 +211,17 @@ Ans:
 <img width="1439" alt="Screenshot 2025-07-01 at 12 09 42 PM" src="https://github.com/user-attachments/assets/ad2f1738-013a-4178-9d94-0e68734e5aa4" />
 
 
+---
+# Prepared by Mohtashim Haider
+
+Cybersecurity Enthusiast | Dhaka University
+
+Thank you for taking the time to explore this project. I hope it provides valuable insights and supports your understanding or investigation.
+
+---
+
+
+
 
 
 
