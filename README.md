@@ -113,6 +113,107 @@ Then follow the http stream:
 And look inside the stream:
 <img width="1439" alt="Screenshot 2025-07-01 at 11 46 43 AM" src="https://github.com/user-attachments/assets/f5fdfe81-e7db-47b0-8c41-2b98e75b771a" />
 
+## **Q7.** What is the name of the domain which was used to download the script in Question 6? 
+Ans:
+
+- 0nh1nt.cn
+
+<img width="1439" alt="Screenshot 2025-07-01 at 11 51 51 AM" src="https://github.com/user-attachments/assets/348d9487-d79b-4581-8508-c974d1257422" />
+
+## **Q8.** What was the duration for the entire HTTP communication to download the suspicious script for Q6?
+Ans:
+
+- 0.6844s
+
+Steps:
+Statistics → Conversations → TCP Duration
+
+<img width="1439" alt="Screenshot 2025-07-01 at 12 01 09 PM" src="https://github.com/user-attachments/assets/c8348555-7484-49ea-9b2d-fffb37d1e76b" />
+
+## **Q9.** What suspicious IP address performed stealthy port scans?
+Ans:
+
+- 192.168.34.23
+
+**🛠️ Filter Used:**
+```wireshark
+tcp.flags.syn == 1 && tcp.flags.ack == 0 && tcp.len == 0
+```
+
+<img width="1440" alt="Screenshot 2025-07-01 at 12 03 26 PM" src="https://github.com/user-attachments/assets/910331d6-c082-4d11-925e-a9fb6c3067fe" />
+
+Steps:
+Statistics → Conversations → TCP
+
+<img width="1439" alt="Screenshot 2025-07-01 at 12 04 56 PM" src="https://github.com/user-attachments/assets/c62c53e5-3711-4ac2-8f2a-ae163fd45f3c" />
+
+### ✅ tcp.flags.syn == 1
+This checks whether the SYN flag is set in the TCP header.
+
+
+SYN (synchronize) is used to initiate a TCP connection.
+
+
+So this means: “This packet is trying to start a connection.”
+
+
+
+### ✅ tcp.flags.ack == 0
+This checks that the ACK flag is not set.
+
+
+In normal TCP connections, a client sends SYN, server replies with SYN-ACK, and client responds with ACK.
+
+
+If ACK is 0, it means this is only the first step of the handshake (likely a scan).
+
+
+ 🔍 Most scanners just send SYN and never complete the handshake to stay stealthy.
+
+
+
+
+### ✅ tcp.len == 0
+This ensures the TCP packet carries no data — just the header and flags.
+
+
+Scans typically don’t send any application data. They just want to see if the port is open, closed, or filtered.
+
+
+
+### 🧠 Combined Meaning
+This filter catches TCP packets that:
+Are trying to start a new connection (SYN),
+
+
+Aren’t responding to an existing one (no ACK),
+
+
+And don’t carry any data (zero payload).
+
+
+
+### 🚨 Why It's Suspicious
+This pattern is a hallmark of SYN scanning:
+Attackers send many SYN packets to different ports or IPs.
+
+
+They don’t complete the handshake, so it stays stealthy.
+
+
+This lets them map which ports are open, without making full connections.
+
+## **Q10.** How many packets were sent only for the stealth scan by the IP in Q9?
+Ans:
+
+- 2005
+
+<img width="1439" alt="Screenshot 2025-07-01 at 12 09 42 PM" src="https://github.com/user-attachments/assets/ad2f1738-013a-4178-9d94-0e68734e5aa4" />
+
+
+
+
+
 
 
 
