@@ -14,7 +14,7 @@ Your organization is currently on high alert due to increased ransomware activit
 
 ---
 
-### **Q1.** What are the two prominent domain names in this pcap related to Lockbit 3.0?
+## **Q1.** What are the two prominent domain names in this pcap related to Lockbit 3.0?
 
 **Ans:**  
 - `send.exploit[.]in`  
@@ -37,7 +37,7 @@ ssl.handshake.extensions_server_name contains "send.exploit.in"
 ```
 <img width="1439" alt="Screenshot 2025-07-01 at 10 57 02 AM" src="https://github.com/user-attachments/assets/f6db807a-bb4a-4967-8f65-e327d76b11fc" />
 
-### **Q2.** Which IP addresses were resolved for the two domains for Lockbit 3.0 in Question 1?
+## **Q2.** Which IP addresses were resolved for the two domains for Lockbit 3.0 in Question 1?
 Ans:
 
 - 89.22.239.240
@@ -45,7 +45,7 @@ Ans:
 - 144.76.136.153
 <img width="1439" alt="Screenshot 2025-07-01 at 11 03 47 AM" src="https://github.com/user-attachments/assets/2b78820f-7674-4141-a05d-8ff5f52ec859" />
 
-### **Q3.** What are the domain names of the two failed IOC connection attempts for CL0P ransomware?
+## **Q3.** What are the domain names of the two failed IOC connection attempts for CL0P ransomware?
 Ans:
 
 - qweastradoc[.]com
@@ -68,7 +68,7 @@ dns.qry.name == "guerdofest.com"
 
 ```Here, qweastradoc[.]com containing IP 92.118.36.213 and jirostrogud[.]com containing IP 88.214.27.101 are failing to connect```.
 
-### **Q4.** What are the resolved IP addresses for the domains in Q3?
+## **Q4.** What are the resolved IP addresses for the domains in Q3?
 Ans:
 
 - 92.118.36.213
